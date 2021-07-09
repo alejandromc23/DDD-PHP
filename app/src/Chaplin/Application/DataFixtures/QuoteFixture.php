@@ -1,8 +1,8 @@
 <?php
 
-namespace Chaplin\DataFixtures;
+namespace Chaplin\Application\DataFixtures;
 
-use App\Entity\Quote;
+use Chaplin\Quote\Domain\Entity\Quote;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;

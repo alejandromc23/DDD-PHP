@@ -10,10 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuoteController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(
-        QuoteRepositoryDoctrine $quoteRepository
-    )
-    : Response {
+    public function index(QuoteRepositoryDoctrine $quoteRepository): Response
+    {
         return $this->render(
             'quote/index.html.twig',
             [

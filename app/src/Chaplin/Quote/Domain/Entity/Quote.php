@@ -2,48 +2,30 @@
 
 namespace Chaplin\Quote\Domain\Entity;
 
-use Chaplin\Quote\Infrastructure\Repository\QuoteRepositoryDoctrine;
-use Doctrine\ORM\Mapping as ORM;
-/**
- * @ORM\Entity(repositoryClass=QuoteRepositoryDoctrine::class)
- */
 class Quote
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $quote;
+    private string $quote;
 
-    /**
-     * @ORM\Column(type="string", length=40)
-     */
-    private $historian;
+    private string $historian;
 
-    /**
-     * @ORM\Column(type="string", length=5)
-     */
-    private $year;
+    private string $year;
 
-    public function __construct($quote, $historian, $year)
+    public function __construct($id, $quote, $historian, $year)
     {
+        $this->id = $id;
         $this->quote = $quote;
         $this->historian = $historian;
         $this->year = $year;
     }
 
-    public function getId(): ?int
+    public function id(): int
     {
         return $this->id;
     }
 
-    public function getQuote(): ?string
+    public function quote(): string
     {
         return $this->quote;
     }
@@ -55,7 +37,7 @@ class Quote
         return $this;
     }
 
-    public function getHistorian(): ?string
+    public function historian(): string
     {
         return $this->historian;
     }
@@ -67,7 +49,7 @@ class Quote
         return $this;
     }
 
-    public function getYear(): ?string
+    public function year(): string
     {
         return $this->year;
     }

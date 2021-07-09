@@ -1,0 +1,20 @@
+Chaplin\Quote\Domain\Entity\Quote:
+  type: entity
+  table: quote
+  id:
+    id:
+      column: id
+
+  fields:
+    quote:
+      column: quote
+      type: text
+      nullable: false
+    historian:
+      column: historian
+      type: string
+      nullable: false
+    year:
+      column: year
+      type: string
+      nullable: false

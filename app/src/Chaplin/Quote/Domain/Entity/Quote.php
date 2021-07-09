@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace Chaplin\Quote\Domain\Entity;
 
-use App\Repository\QuoteRepository;
+use Chaplin\Quote\Infrastructure\Repository\QuoteRepositoryDoctrine;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Entity(repositoryClass=QuoteRepository::class)
+ * @ORM\Entity(repositoryClass=QuoteRepositoryDoctrine::class)
  */
 class Quote
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace Chaplin\Controller;
 
-use App\Repository\QuoteRepository;
+use Chaplin\Quote\Infrastructure\Repository\QuoteRepositoryDoctrine;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,10 +11,9 @@ class QuoteController extends AbstractController
 {
     #[Route('/', name: 'index')]
     public function index(
-        QuoteRepository $quoteRepository
+        QuoteRepositoryDoctrine $quoteRepository
     )
     : Response {
-
         return $this->render(
             'quote/index.html.twig',
             [

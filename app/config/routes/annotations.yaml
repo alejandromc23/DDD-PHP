@@ -1,7 +1,7 @@
 controllers:
-    resource: ../../src/Controller/
+    resource: ../../src/Chaplin/Controller/
     type: annotation
 
 kernel:
-    resource: ../../src/Kernel.php
+    resource: ../../src/Chaplin/Kernel.php
     type: annotation

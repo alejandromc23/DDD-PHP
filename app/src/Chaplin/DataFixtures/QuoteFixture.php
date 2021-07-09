@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataFixtures;
+namespace Chaplin\DataFixtures;
 
 use App\Entity\Quote;
 use Doctrine\Bundle\FixturesBundle\Fixture;

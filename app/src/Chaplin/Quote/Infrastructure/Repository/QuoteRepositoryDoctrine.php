@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace Chaplin\Quote\Infrastructure\Repository;
 
-use App\Entity\Quote;
+use Chaplin\Quote\Domain\Entity\Quote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Quote[]    findAll()
  * @method Quote[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class QuoteRepository extends ServiceEntityRepository
+class QuoteRepositoryDoctrine extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

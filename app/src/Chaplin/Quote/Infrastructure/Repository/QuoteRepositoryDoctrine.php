@@ -2,49 +2,33 @@
 
 namespace Chaplin\Quote\Infrastructure\Repository;
 
+use Chaplin\Core\Infrastructure\AbstractDoctrineRepository;
 use Chaplin\Quote\Domain\Entity\Quote;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Chaplin\Quote\Domain\Repository\QuoteRepository;
+use Doctrine\ORM\EntityManager;
+use JetBrains\PhpStorm\Pure;
 
-/**
- * @method Quote|null find($id, $lockMode = null, $lockVersion = null)
- * @method Quote|null findOneBy(array $criteria, array $orderBy = null)
- * @method Quote[]    findAll()
- * @method Quote[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class QuoteRepositoryDoctrine extends ServiceEntityRepository
+class QuoteRepositoryDoctrine extends AbstractDoctrineRepository implements QuoteRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private const ALIAS = 'quote';
+
+    #[Pure] public function __construct(EntityManager $entityManager)
     {
-        parent::__construct($registry, Quote::class);
+        parent::__construct($entityManager);
     }
 
-    // /**
-    //  * @return Quote[] Returns an array of Quote objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAll(): array
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('q.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->entityManager->getRepository(Quote::class)->findAll();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Quote
+    public function className(): string
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return Quote::class;
     }
-    */
+
+    public function dqlAlias(): string
+    {
+        return self::ALIAS;
+    }
 }

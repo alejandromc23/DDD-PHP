@@ -9,7 +9,11 @@ services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: false # Automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false
+        bind:
+            League\Tactician\CommandBus $queryBus: '@tactician.commandbus.query'
+            League\Tactician\CommandBus $commandBus: '@tactician.commandbus.command'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -18,10 +22,18 @@ services:
         exclude:
             - '../src/Chaplin/DataFixtures/'
 
+    # CONTROLLER
     Chaplin\Controller\:
         resource: '../src/Chaplin/Controller/'
         tags: ['controller.service_arguments']
 
+    # MAPPING HANDLER-COMMAND
+    Chaplin\Quote\Application\FindAll\FindAllQuotesHandler:
+        class: Chaplin\Quote\Application\FindAll\FindAllQuotesHandler
+        tags:
+            - { name: tactician.handler, typehints: true }
+
+    # REPOSITORY
     Chaplin\Quote\Domain\Repository\QuoteRepository:
         class: Chaplin\Quote\Infrastructure\Repository\QuoteRepositoryDoctrine
         arguments:

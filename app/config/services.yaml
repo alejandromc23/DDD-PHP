@@ -22,16 +22,22 @@ services:
         exclude:
             - '../src/Chaplin/DataFixtures/'
 
+    _instanceof:
+        # MAPPING HANDLER-COMMAND
+        Chaplin\Core\CommandBus\CommandHandlerInterface:
+            public: true
+            tags:
+                - { name: tactician.handler, typehints: true, bus: command }
+
+        Chaplin\Core\CommandBus\QueryHandlerInterface:
+            public: true
+            tags:
+                - { name: tactician.handler, typehints: true, bus: query }
+
     # CONTROLLER
     Chaplin\Controller\:
         resource: '../src/Chaplin/Controller/'
         tags: ['controller.service_arguments']
-
-    # MAPPING HANDLER-COMMAND
-    Chaplin\Quote\Application\FindAll\FindAllQuotesHandler:
-        class: Chaplin\Quote\Application\FindAll\FindAllQuotesHandler
-        tags:
-            - { name: tactician.handler, typehints: true }
 
     # REPOSITORY
     Chaplin\Quote\Domain\Repository\QuoteRepository:

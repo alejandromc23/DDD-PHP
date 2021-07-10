@@ -13,8 +13,7 @@ class QuoteController extends AbstractController
 {
     public function __construct(
         private CommandBus $queryBus
-    )
-    {
+    ) {
     }
 
     #[Route('/', name: 'index')]

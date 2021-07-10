@@ -1,17 +1,12 @@
 <?php
 
-
 namespace Chaplin\Core\Infrastructure;
-
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
 
 abstract class AbstractDoctrineRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
     protected EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)

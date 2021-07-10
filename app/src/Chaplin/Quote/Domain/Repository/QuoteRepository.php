@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Quote\Domain\Repository;
-
 
 interface QuoteRepository
 {

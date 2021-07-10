@@ -11,14 +11,14 @@ class QuoteFixture extends Fixture
 {
     private $faker;
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->faker = Factory::create();
     }
 
-    public function load(ObjectManager $manager) {
-
-        for ($i = 0; $i < 50; $i++) {
+    public function load(ObjectManager $manager)
+    {
+        for ($i = 0; $i < 50; ++$i) {
             $manager->persist($this->getQuote());
         }
         $manager->flush();
@@ -26,7 +26,6 @@ class QuoteFixture extends Fixture
 
     private function getQuote(): Quote
     {
-
         return new Quote(
             $this->faker->sentence(10),
             $this->faker->name(),

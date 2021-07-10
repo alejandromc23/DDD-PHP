@@ -40,9 +40,10 @@ services:
         tags: ['controller.service_arguments']
 
     # REPOSITORY
-    Chaplin\Quote\Domain\Repository\QuoteRepository:
-        class: Chaplin\Quote\Infrastructure\Repository\QuoteRepositoryDoctrine
+    Chaplin\Core\Infrastructure\AbstractDoctrineRepository:
+        class: Chaplin\Core\Infrastructure\AbstractDoctrineRepository
         arguments:
             - '@doctrine.orm.entity_manager'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

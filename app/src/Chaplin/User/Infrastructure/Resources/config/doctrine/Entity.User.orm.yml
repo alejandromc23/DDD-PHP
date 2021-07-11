@@ -3,7 +3,7 @@ Chaplin\User\Domain\Entity\User:
   table: user
   id:
     id:
-      column: id
+      type: Id
 
   fields:
     email:

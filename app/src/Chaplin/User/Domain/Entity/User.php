@@ -2,22 +2,29 @@
 
 namespace Chaplin\User\Domain\Entity;
 
+use Chaplin\Core\Domain\ValueObject\Id;
+use Chaplin\User\Domain\ValueObject\Email;
+use Chaplin\User\Domain\ValueObject\Username;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
-    private int $id;
+    private Id $id;
 
-    private string $email;
+    private Email $email;
 
-    private string $username;
+    private Username $username;
 
-    private array $roles = [];
+    private array $roles;
 
-    private $password;
+    private string $password;
 
-    public function __construct($id, $email, $username)
+    public function __construct(
+        Id $id,
+        Email $email,
+        Username $username
+    )
     {
         $this->id = $id;
         $this->email = $email;
@@ -33,21 +40,24 @@ class User implements UserInterface
         }
     }
 
-    public function getId(): ?int
+    public function id(): Id
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function email(): Email
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(Email $email): void
     {
         $this->email = $email;
+    }
 
-        return $this;
+    public function username(): Username
+    {
+        return $this->username;
     }
 
     /**
@@ -97,7 +107,7 @@ class User implements UserInterface
         return null;
     }
 
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
     }

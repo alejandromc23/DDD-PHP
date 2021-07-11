@@ -1,0 +1,23 @@
+Chaplin\User\Domain\Entity\User:
+  type: entity
+  table: user
+  id:
+    id:
+      column: id
+
+  fields:
+    email:
+      column: email
+      type: string
+      nullable: false
+    roles:
+      column: roles
+      type: json
+    password:
+      column: password
+      type: string
+      nullable: false
+    username:
+      column: username
+      type: string
+      nullable: false

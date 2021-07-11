@@ -1,38 +1,37 @@
 <?php
 
-namespace App\Entity;
+namespace Chaplin\User\Domain\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
 class User implements UserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
+    private string $email;
 
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $username;
+    private string $username;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    private array $roles = [];
+
+    private $password;
+
+    public function __construct($id, $email, $username)
+    {
+        $this->id = $id;
+        $this->email = $email;
+        $this->username = $username;
+        $this->roles = ['ROLE_USER'];
+    }
+
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+        if ('ROLE_USER' !== $role && !in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+    }
 
     public function getId(): ?int
     {
@@ -96,6 +95,11 @@ class User implements UserInterface
     public function getPassword(): ?string
     {
         return null;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
     /**

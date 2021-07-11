@@ -15,3 +15,8 @@ doctrine:
                         type: yml
                         prefix: 'Chaplin\Quote\Domain'
                         dir: '%kernel.project_dir%/src/Chaplin/Quote/Infrastructure/Resources/config/doctrine'
+
+                    User:
+                        type: yml
+                        prefix: 'Chaplin\User\Domain'
+                        dir: '%kernel.project_dir%/src/Chaplin/User/Infrastructure/Resources/config/doctrine'

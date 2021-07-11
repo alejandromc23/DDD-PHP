@@ -2,3 +2,16 @@ index:
     path: /
     controller: Chaplin\Controller\QuoteController::index
     methods: [GET]
+
+register:
+    path: /register
+    controller: Chaplin\Controller\UserController::register
+    methods: [POST]
+
+api:
+    path: /api
+    controller: Chaplin\Controller\UserController::api
+
+login_check:
+    path:     /login_check
+    methods:  [POST]

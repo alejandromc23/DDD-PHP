@@ -15,7 +15,7 @@ class Email
         string $email
     )
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!$this->isValidEmail($email)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid email.', $email));
         }
 

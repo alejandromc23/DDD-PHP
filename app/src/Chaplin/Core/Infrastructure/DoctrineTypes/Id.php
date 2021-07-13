@@ -40,6 +40,6 @@ class Id extends GuidType
 
     protected function getNamespace(): string
     {
-        return 'Colvin\Core\Domain\ValueObject';
+        return 'Chaplin\Core\Domain\ValueObject';
     }
 }

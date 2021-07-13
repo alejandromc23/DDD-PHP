@@ -4,36 +4,34 @@
 namespace Chaplin\Controller;
 
 
-use Chaplin\Core\Domain\ValueObject\Id;
-use Chaplin\Toolkit\IdGenerator\UuidGenerator;
-use Chaplin\User\Domain\Entity\User;
+use Chaplin\User\Application\Create\CreateUserQuery;
 use Chaplin\User\Domain\ValueObject\Email;
 use Chaplin\User\Domain\ValueObject\Password;
 use Chaplin\User\Domain\ValueObject\Username;
+use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
-    public function register(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function __construct(
+        private CommandBus $commandBus
+    )
     {
-        $em = $this->getDoctrine()->getManager();
+    }
 
+    public function register(Request $request): Response
+    {
         $data = json_decode($request->getContent(), true);
 
         $email = new Email($data['email']);
         $username = new Username($data['username']);
         $password = new Password($data['password']);
 
-        $user = new User(new Id(UuidGenerator::generateId()), $email, $username);
-        $user->setPassword($encoder->encodePassword($user, $password->password()));
+        $this->commandBus->handle(new CreateUserQuery($email, $username, $password));
 
-        $em->persist($user);
-        $em->flush();
-
-        return new Response(sprintf('User %s successfully created', $user->getUsername()), 201);
+        return new Response(sprintf('User %s successfully created', $username), 201);
     }
 
     public function api(): Response

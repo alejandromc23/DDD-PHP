@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\User\Domain\ValueObject;
-
 
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 
@@ -12,8 +10,7 @@ class Username
 
     public function __construct(
         string $username
-    )
-    {
+    ) {
         if (!$this->isValidUsername($username)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid username.', $username));
         }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\User\Domain\ValueObject;
-
 
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 
@@ -12,8 +10,7 @@ class Password
 
     public function __construct(
         string $password
-    )
-    {
+    ) {
         if (!$this->isValidPassword($password)) {
             throw new InvalidArgumentException('Password must contain at least 1 digit, 1 upper case, 1 lower and a minimum of 8 characters');
         }

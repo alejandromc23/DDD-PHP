@@ -3,18 +3,15 @@
 namespace Chaplin\User\Domain\Entity;
 
 use Chaplin\Core\Domain\ValueObject\Id;
-use Chaplin\User\Domain\ValueObject\Email;
-use Chaplin\User\Domain\ValueObject\Username;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
     private Id $id;
 
-    private Email $email;
+    private string $email;
 
-    private Username $username;
+    private string $username;
 
     private array $roles;
 
@@ -22,10 +19,9 @@ class User implements UserInterface
 
     public function __construct(
         Id $id,
-        Email $email,
-        Username $username
-    )
-    {
+        string $email,
+        string $username
+    ) {
         $this->id = $id;
         $this->email = $email;
         $this->username = $username;
@@ -45,17 +41,17 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function email(): Email
+    public function email(): string
     {
         return $this->email;
     }
 
-    public function setEmail(Email $email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    public function username(): Username
+    public function username(): string
     {
         return $this->username;
     }
@@ -67,7 +63,7 @@ class User implements UserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     /**
@@ -75,7 +71,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     /**
@@ -97,14 +93,9 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
-     *
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): ?string
     {
-        return null;
+        return $this->password;
     }
 
     public function setPassword(string $password)

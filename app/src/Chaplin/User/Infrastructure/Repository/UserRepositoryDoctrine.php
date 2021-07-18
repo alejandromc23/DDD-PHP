@@ -1,10 +1,7 @@
 <?php
 
-
 namespace Chaplin\User\Infrastructure\Repository;
 
-
-use Chaplin\Core\Domain\ValueObject\Id;
 use Chaplin\Core\Infrastructure\AbstractDoctrineRepository;
 use Chaplin\User\Domain\Entity\User;
 use Chaplin\User\Domain\Repository\UserRepository;
@@ -38,7 +35,7 @@ class UserRepositoryDoctrine extends AbstractDoctrineRepository implements UserR
 
         $query = sprintf('SELECT * FROM user
             WHERE email = \'%s\';
-        ',  $email->email());
+        ', $email->email());
 
         $statement = $connection->prepare($query);
         $statement->execute();

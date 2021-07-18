@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\User\Application\Create;
-
 
 use Chaplin\Core\CommandBus\CommandHandlerInterface;
 use Chaplin\Core\Domain\ValueObject\Id;
@@ -26,7 +24,7 @@ class CreateUserHandler implements CommandHandlerInterface
     {
         $this->validateUserData($userQuery->email(), $userQuery->username());
 
-        $user = new User(new Id(UuidGenerator::generateId()), $userQuery->email(), $userQuery->username());
+        $user = new User(new Id(UuidGenerator::generateId()), $userQuery->email()->email(), $userQuery->username()->username());
 
         $user->setPassword($this->encoder->encodePassword($user, $userQuery->password()));
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Core\Domain\ValueObject;
-
 
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
@@ -35,15 +33,17 @@ class Id
         return $this->id;
     }
 
-    #[Pure] public function equals(string $id): bool
-    {
-        return $this->id() === $id;
-    }
+    #[Pure]
+ public function equals(string $id): bool
+ {
+     return $this->id() === $id;
+ }
 
-    #[Pure] public function __toString(): string
-    {
-        return $this->id();
-    }
+    #[Pure]
+ public function __toString(): string
+ {
+     return $this->id();
+ }
 
     private function isValidUuid($inputStringId): bool
     {

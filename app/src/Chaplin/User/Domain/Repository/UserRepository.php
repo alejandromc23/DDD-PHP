@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\User\Domain\Repository;
-
 
 use Chaplin\User\Domain\Entity\User;
 use Chaplin\User\Domain\ValueObject\Email;

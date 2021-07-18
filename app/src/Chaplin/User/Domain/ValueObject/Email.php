@@ -1,9 +1,6 @@
 <?php
 
-
 namespace Chaplin\User\Domain\ValueObject;
-
-
 
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 
@@ -13,8 +10,7 @@ class Email
 
     public function __construct(
         string $email
-    )
-    {
+    ) {
         if (!$this->isValidEmail($email)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid email.', $email));
         }

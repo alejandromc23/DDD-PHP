@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Toolkit\IdGenerator;
-
 
 use Ramsey\Uuid\Uuid;
 

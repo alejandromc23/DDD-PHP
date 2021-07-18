@@ -1,10 +1,7 @@
 <?php
 
-
 namespace Chaplin\User\Application\Create;
 
-
-use Chaplin\Core\Domain\ValueObject\Id;
 use Chaplin\User\Domain\ValueObject\Email;
 use Chaplin\User\Domain\ValueObject\Username;
 
@@ -14,8 +11,7 @@ class CreateUserQuery
         private Email $email,
         private Username $username,
         private string $password
-    )
-    {
+    ) {
     }
 
     public function email(): Email

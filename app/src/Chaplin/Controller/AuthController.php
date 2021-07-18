@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Controller;
-
 
 use Chaplin\User\Application\Create\CreateUserQuery;
 use Chaplin\User\Domain\ValueObject\Email;
@@ -13,12 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends AbstractController
+class AuthController extends AbstractController
 {
     public function __construct(
         private CommandBus $commandBus
-    )
-    {
+    ) {
     }
 
     public function register(Request $request): Response

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Core\Infrastructure\DoctrineTypes;
-
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
@@ -28,7 +26,7 @@ class Id extends GuidType
         if (is_null($value)) {
             return null;
         }
-        $className = $this->getNamespace() . '\\' . $this->getName();
+        $className = $this->getNamespace().'\\'.$this->getName();
 
         return new $className($value);
     }

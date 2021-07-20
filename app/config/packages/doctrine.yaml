@@ -5,6 +5,10 @@ doctrine:
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '13'
+
+        types:
+            Id: Chaplin\Core\Infrastructure\DoctrineTypes\Id
+
     orm:
         auto_generate_proxy_classes: true
         entity_managers:
@@ -15,3 +19,8 @@ doctrine:
                         type: yml
                         prefix: 'Chaplin\Quote\Domain'
                         dir: '%kernel.project_dir%/src/Chaplin/Quote/Infrastructure/Resources/config/doctrine'
+
+                    User:
+                        type: yml
+                        prefix: 'Chaplin\User\Domain'
+                        dir: '%kernel.project_dir%/src/Chaplin/User/Infrastructure/Resources/config/doctrine'

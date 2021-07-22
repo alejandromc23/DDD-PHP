@@ -3,11 +3,6 @@ index:
     controller: Chaplin\Controller\QuoteController::index
     methods: [GET]
 
-register:
-    path: /register
-    controller: Chaplin\Controller\AuthController::register
-    methods: [POST]
-
 api:
     path: /api
     controller: Chaplin\Controller\AuthController::api

@@ -1,0 +1,24 @@
+Chaplin\Movie\Domain\Entity\Movie:
+  type: entity
+  table: movies
+  id:
+    id:
+      type: Id
+
+  fields:
+    extId:
+      column: ext_id
+      type: string
+      nullable: false
+    title:
+      column: title
+      type: text
+      nullable: false
+    startYear:
+      column: start_year
+      type: datetime
+      nullable: false
+    duration:
+      column: duration
+      type: int
+      nullable: true

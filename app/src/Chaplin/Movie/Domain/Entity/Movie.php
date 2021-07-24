@@ -11,7 +11,7 @@ class Movie
         private Id $id,
         private string $extId,
         private string $title,
-        private DateTimeInterface $startDate,
+        private DateTimeInterface $year,
         private ?int $duration
     ) {
     }
@@ -31,9 +31,9 @@ class Movie
         return $this->title;
     }
 
-    public function startDate(): DateTimeInterface
+    public function year(): DateTimeInterface
     {
-        return $this->startDate;
+        return $this->year;
     }
 
     public function duration(): ?int

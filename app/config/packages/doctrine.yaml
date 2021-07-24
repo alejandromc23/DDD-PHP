@@ -24,3 +24,8 @@ doctrine:
                         type: yml
                         prefix: 'Chaplin\User\Domain'
                         dir: '%kernel.project_dir%/src/Chaplin/User/Infrastructure/Resources/config/doctrine'
+
+                    Movie:
+                        type: yml
+                        prefix: 'Chaplin\Movie\Domain'
+                        dir: '%kernel.project_dir%/src/Chaplin/Movie/Infrastructure/Resources/config/doctrine'

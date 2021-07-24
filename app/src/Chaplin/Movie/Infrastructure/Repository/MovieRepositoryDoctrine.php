@@ -1,13 +1,10 @@
 <?php
 
-
 namespace Chaplin\Movie\Infrastructure\Repository;
-
 
 use Chaplin\Core\Infrastructure\AbstractDoctrineRepository;
 use Chaplin\Movie\Domain\Entity\Movie;
 use Chaplin\Movie\Domain\Repository\MovieRepository;
-use JetBrains\PhpStorm\NoReturn;
 
 class MovieRepositoryDoctrine extends AbstractDoctrineRepository implements MovieRepository
 {

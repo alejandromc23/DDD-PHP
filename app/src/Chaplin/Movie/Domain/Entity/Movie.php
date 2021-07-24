@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Movie\Domain\Entity;
-
 
 use Chaplin\Core\Domain\ValueObject\Id;
 use DateTimeInterface;
@@ -15,8 +13,7 @@ class Movie
         private string $title,
         private DateTimeInterface $startDate,
         private ?int $duration
-    )
-    {
+    ) {
     }
 
     public function id(): Id

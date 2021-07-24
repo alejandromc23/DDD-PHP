@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Chaplin\Controller;
-
 
 use Chaplin\Movie\Application\FindByTitle\FindByTitleQuery;
 use League\Tactician\CommandBus;

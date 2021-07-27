@@ -2,6 +2,7 @@
 
 namespace Chaplin\Controller;
 
+use Chaplin\Core\Domain\ValueObject\Id;
 use Chaplin\Movie\Application\FindByTitle\FindByTitleQuery;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +18,7 @@ class MovieController extends AbstractController
     }
 
     #[Route('/api/movies', methods: ['GET'])]
-    public function register(Request $request): Response
+    public function find(Request $request): Response
     {
         $title = $request->query->get('title');
 
@@ -26,5 +27,15 @@ class MovieController extends AbstractController
         );
 
         return new Response(json_encode($movies));
+    }
+
+    #[Route('/api/movies/add', methods: ['POST'])]
+    public function add(Request $request): Response
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $id = new Id($data['id']);
+
+        return new Response('Movie added successfully! :)', 201);
     }
 }

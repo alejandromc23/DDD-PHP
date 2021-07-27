@@ -22,3 +22,14 @@ Chaplin\Movie\Domain\Entity\Movie:
       column: duration
       type: integer
       nullable: true
+
+  manyToMany:
+    users:
+      targetEntity: Chaplin\User\Domain\Entity\User
+      inversedBy: movies
+      joinColumn:
+        user_id:
+          referencedColumnName: id
+      inverseJoinColumns:
+        movie_id:
+          referencedColumnName: id

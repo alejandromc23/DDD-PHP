@@ -21,3 +21,8 @@ Chaplin\User\Domain\Entity\User:
       column: username
       type: string
       nullable: false
+
+  manyToMany:
+    movies:
+      targetEntity: Chaplin\Movie\Domain\Entity\Movie
+      mappedBy: user

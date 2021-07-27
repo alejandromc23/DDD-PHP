@@ -3,10 +3,13 @@
 namespace Chaplin\Movie\Domain\Entity;
 
 use Chaplin\Core\Domain\ValueObject\Id;
+use Chaplin\User\Domain\Entity\User;
 use DateTimeInterface;
 
 class Movie
 {
+    private array $users;
+
     public function __construct(
         private Id $id,
         private string $extId,
@@ -14,6 +17,7 @@ class Movie
         private DateTimeInterface $year,
         private ?int $duration
     ) {
+        $this->users = [];
     }
 
     public function id(): Id
@@ -39,5 +43,10 @@ class Movie
     public function duration(): ?int
     {
         return $this->duration;
+    }
+
+    public function addUser(User $user): void
+    {
+        $this->users[] = $user;
     }
 }

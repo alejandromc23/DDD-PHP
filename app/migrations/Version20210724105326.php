@@ -23,9 +23,13 @@ final class Version20210724105326 extends AbstractMigration
         $this->addSql('CREATE TABLE user_movies (
         user_id CHAR(36) NOT NULL COMMENT \'(DC2Type:Id)\', 
         movie_id CHAR(36) NOT NULL COMMENT \'(DC2Type:Id)\', 
+        rating FLOAT DEFAULT NULL,
+        created_at DATETIME NOT NULL,
+        updated_at DATETIME NOT NULL,
         INDEX IDX_USER_ID (user_id), INDEX IDX_movie_ID (movie_id), PRIMARY KEY(user_id, movie_id)) 
         DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
 
+        $this->addSql('CREATE UNIQUE INDEX user_movies_unique_index ON user_movies(user_id, movie_id);');
         $this->addSql('ALTER TABLE user_movies ADD CONSTRAINT FK_USER_ID FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE user_movies ADD CONSTRAINT FK_MOVIE_ID FOREIGN KEY (movie_id) REFERENCES movies (id)');
 

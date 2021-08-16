@@ -22,7 +22,8 @@ Chaplin\User\Domain\Entity\User:
       type: string
       nullable: false
 
-  manyToMany:
-    movies:
-      targetEntity: Chaplin\Movie\Domain\Entity\Movie
+  oneToMany:
+    userMovies:
+      targetEntity: Chaplin\User\Domain\Entity\UserMovie
       mappedBy: user
+      cascade: [ "persist" ]

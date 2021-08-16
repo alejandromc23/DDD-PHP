@@ -3,7 +3,8 @@
 namespace Chaplin\User\Domain\Entity;
 
 use Chaplin\Core\Domain\ValueObject\Id;
-use Chaplin\Movie\Domain\Entity\Movie;
+use Doctrine\Common\Collections\ArrayCollection;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
@@ -18,20 +19,20 @@ class User implements UserInterface
 
     private string $password;
 
-    /** @var Movie[] */
-    private array $movies;
+    private ArrayCollection $userMovies;
 
-    public function __construct(
+    #[Pure]
+ public function __construct(
         Id $id,
         string $email,
         string $username
     ) {
-        $this->id = $id;
-        $this->email = $email;
-        $this->username = $username;
-        $this->roles = ['ROLE_USER'];
-        $this->movies = [];
-    }
+     $this->id = $id;
+     $this->email = $email;
+     $this->username = $username;
+     $this->roles = ['ROLE_USER'];
+     $this->userMovies = new ArrayCollection();
+ }
 
     public function addRole($role)
     {
@@ -127,13 +128,17 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function movies(): array
-    {
-        return $this->movies;
-    }
+    /**
+     * @return UserMovie[]
+     */
+    #[Pure]
+ public function userMovies(): array
+ {
+     return $this->userMovies->toArray();
+ }
 
-    public function addMovie(Movie $movie): void
+    public function addUserMovie(UserMovie $userMovie): void
     {
-        $this->movies[] = $movie;
+        $this->userMovies->add($userMovie);
     }
 }

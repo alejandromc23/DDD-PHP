@@ -1,0 +1,39 @@
+Chaplin\User\Domain\Entity\UserMovie:
+  type: entity
+  table: user_movies
+  id:
+    id:
+      type: Id
+
+  fields:
+    rating:
+      column: rating
+      type: float
+      scale: 1
+      nullable: true
+    createdAt:
+      column: created_at
+      type: datetime_immutable
+      nullable: false
+    updatedAt:
+      column: updated_at
+      type: datetime_immutable
+      nullable: false
+
+  manyToOne:
+    user:
+      targetEntity: Chaplin\User\Domain\Entity\User
+      inversedBy: userMovies
+      joinColumn:
+        name: user_id
+        referencedColumnName: id
+
+    movie:
+      targetEntity: Chaplin\Movie\Domain\Entity\Movie
+      inversedBy: userMovies
+      joinColumn:
+        name: movie_id
+        referencedColumnName: id
+
+  lifecycleCallbacks:
+    preUpdate: [ updateTimestamps ]

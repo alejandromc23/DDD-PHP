@@ -23,13 +23,8 @@ Chaplin\Movie\Domain\Entity\Movie:
       type: integer
       nullable: true
 
-  manyToMany:
-    users:
-      targetEntity: Chaplin\User\Domain\Entity\User
-      inversedBy: movies
-      joinColumn:
-        user_id:
-          referencedColumnName: id
-      inverseJoinColumns:
-        movie_id:
-          referencedColumnName: id
+  oneToMany:
+    userMovies:
+      targetEntity: Colvin\User\Domain\Entity\UserMovie
+      mappedBy: movie
+      cascade: [ "persist" ]

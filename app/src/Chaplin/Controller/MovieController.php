@@ -18,7 +18,7 @@ class MovieController extends AbstractController
     }
 
     #[Route('/api/movies', methods: ['GET'])]
-    public function find(Request $request): Response
+    public function findByTitle(Request $request): Response
     {
         $title = $request->query->get('title');
 
@@ -30,7 +30,7 @@ class MovieController extends AbstractController
     }
 
     #[Route('/api/movies/add', methods: ['POST'])]
-    public function add(Request $request): Response
+    public function addUserMovie(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
 

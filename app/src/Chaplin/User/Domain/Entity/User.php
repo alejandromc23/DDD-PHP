@@ -4,6 +4,7 @@ namespace Chaplin\User\Domain\Entity;
 
 use Chaplin\Core\Domain\ValueObject\Id;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -19,7 +20,7 @@ class User implements UserInterface
 
     private string $password;
 
-    private ArrayCollection $userMovies;
+    private Collection $userMovies;
 
     #[Pure]
  public function __construct(

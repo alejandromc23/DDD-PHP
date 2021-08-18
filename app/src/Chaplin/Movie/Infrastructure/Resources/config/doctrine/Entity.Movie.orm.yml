@@ -25,6 +25,6 @@ Chaplin\Movie\Domain\Entity\Movie:
 
   oneToMany:
     userMovies:
-      targetEntity: Colvin\User\Domain\Entity\UserMovie
+      targetEntity: Chaplin\User\Domain\Entity\UserMovie
       mappedBy: movie
       cascade: [ "persist" ]

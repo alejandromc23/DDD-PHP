@@ -5,7 +5,6 @@ namespace Chaplin\User\Domain\Entity;
 use Chaplin\Core\Domain\ValueObject\Id;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
@@ -22,18 +21,17 @@ class User implements UserInterface
 
     private Collection $userMovies;
 
-    #[Pure]
- public function __construct(
+    public function __construct(
         Id $id,
         string $email,
         string $username
     ) {
-     $this->id = $id;
-     $this->email = $email;
-     $this->username = $username;
-     $this->roles = ['ROLE_USER'];
-     $this->userMovies = new ArrayCollection();
- }
+        $this->id = $id;
+        $this->email = $email;
+        $this->username = $username;
+        $this->roles = ['ROLE_USER'];
+        $this->userMovies = new ArrayCollection();
+    }
 
     public function addRole($role)
     {
@@ -132,11 +130,10 @@ class User implements UserInterface
     /**
      * @return UserMovie[]
      */
-    #[Pure]
- public function userMovies(): array
- {
-     return $this->userMovies->toArray();
- }
+    public function userMovies(): array
+    {
+        return $this->userMovies->toArray();
+    }
 
     public function addUserMovie(UserMovie $userMovie): void
     {

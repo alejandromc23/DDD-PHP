@@ -4,6 +4,7 @@ namespace Chaplin\Controller;
 
 use Chaplin\Core\Domain\ValueObject\Id;
 use Chaplin\Movie\Application\FindByTitle\FindByTitleQuery;
+use Chaplin\User\Application\AddUserMovie\AddUserMovieCommand;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class MovieController extends AbstractController
 {
     public function __construct(
-        private CommandBus $queryBus
+        private CommandBus $queryBus,
+        private CommandBus $commandBus
     ) {
     }
 
@@ -34,7 +36,10 @@ class MovieController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
+        $user = $this->getUser();
         $id = new Id($data['id']);
+
+        $this->commandBus->handle(new AddUserMovieCommand($user, $id));
 
         return new Response('Movie added successfully! :)', 201);
     }

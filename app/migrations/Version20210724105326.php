@@ -21,6 +21,7 @@ final class Version20210724105326 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE user_movies (
+        id CHAR(36) NOT NULL COMMENT \'(DC2Type:Id)\', 
         user_id CHAR(36) NOT NULL COMMENT \'(DC2Type:Id)\', 
         movie_id CHAR(36) NOT NULL COMMENT \'(DC2Type:Id)\', 
         rating FLOAT DEFAULT NULL,

@@ -39,7 +39,8 @@ class MovieRepositoryDoctrine extends AbstractDoctrineRepository implements Movi
         $connection = $this->entityManager->getConnection();
 
         $query = sprintf('SELECT * FROM movies
-            WHERE title LIKE \'%%%s%%\';
+            WHERE title LIKE \'%%%s%%\' 
+            LIMIT 15;
         ', $title);
 
         $statement = $connection->prepare($query);

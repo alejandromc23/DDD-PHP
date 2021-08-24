@@ -57,4 +57,9 @@ final class UserMovie
     {
         $this->updatedAt = new \DateTimeImmutable();
     }
+
+    public function setRating(float $rating): void
+    {
+        $this->rating = $rating;
+    }
 }

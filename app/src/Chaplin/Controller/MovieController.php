@@ -5,6 +5,7 @@ namespace Chaplin\Controller;
 use Chaplin\Core\Domain\ValueObject\Id;
 use Chaplin\Movie\Application\FindByTitle\FindByTitleQuery;
 use Chaplin\User\Application\AddUserMovie\AddUserMovieCommand;
+use Chaplin\User\Application\RateUserMovie\RateUserMovieCommand;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,5 +43,19 @@ class MovieController extends AbstractController
         $this->commandBus->handle(new AddUserMovieCommand($user, $id));
 
         return new Response('Movie added successfully! :)', 201);
+    }
+
+    #[Route('/api/movies/rate', methods: ['POST'])]
+    public function rateUserMovie(Request $request): Response
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $user = $this->getUser();
+        $id = new Id($data['id']);
+        $rating = (float) $data['rating'];
+
+        $this->commandBus->handle(new RateUserMovieCommand($user, $id, $rating));
+
+        return new Response('Movie rated successfully! :)', 201);
     }
 }

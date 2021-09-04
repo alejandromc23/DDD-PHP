@@ -4,6 +4,7 @@ namespace Chaplin\Controller;
 
 use Chaplin\Core\Domain\ValueObject\Id;
 use Chaplin\Movie\Application\FindByTitle\FindByTitleQuery;
+use Chaplin\Movie\Application\FindByTitle\FindByTitleResponse;
 use Chaplin\User\Application\AddUserMovie\AddUserMovieCommand;
 use Chaplin\User\Application\RateUserMovie\RateUserMovieCommand;
 use League\Tactician\CommandBus;
@@ -25,11 +26,12 @@ class MovieController extends AbstractController
     {
         $title = $request->query->get('title');
 
+        /** @var FindByTitleResponse $movies */
         $movies = $this->queryBus->handle(
             new FindByTitleQuery($title)
         );
 
-        return new Response(json_encode($movies));
+        return new Response(json_encode($movies->movies()));
     }
 
     #[Route('/api/movies/add', methods: ['POST'])]

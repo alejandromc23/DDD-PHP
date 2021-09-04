@@ -43,4 +43,19 @@ final class UserMovieRepositoryDoctrine extends AbstractDoctrineRepository imple
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * @return UserMovie[]
+     */
+    public function getUserMoviesByUserId(Id $id): array
+    {
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('um')
+            ->from(UserMovie::class, 'um')
+            ->where('um.user = :userId')
+            ->setParameter('userId', $id->id());
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

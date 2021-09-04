@@ -34,18 +34,19 @@ class MovieRepositoryDoctrine extends AbstractDoctrineRepository implements Movi
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @return Movie[]
+     */
     public function findByTitleLike(string $title): array
     {
-        $connection = $this->entityManager->getConnection();
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('m')
+            ->from(Movie::class, 'm')
+            ->where('m.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->setMaxResults(15);
 
-        $query = sprintf('SELECT * FROM movies
-            WHERE title LIKE \'%%%s%%\' 
-            LIMIT 15;
-        ', $title);
-
-        $statement = $connection->prepare($query);
-        $statement->execute();
-
-        return $statement->fetchAll();
+        return $queryBuilder->getQuery()->getResult();
     }
 }

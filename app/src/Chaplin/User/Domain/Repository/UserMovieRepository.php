@@ -12,4 +12,6 @@ interface UserMovieRepository
     public function save(UserMovie $userMovie): void;
 
     public function getUserMovieByUserIdAndMovieId(Id $userId, Id $movieId): ?UserMovie;
+
+    public function getUserMoviesByUserId(Id $id): array;
 }

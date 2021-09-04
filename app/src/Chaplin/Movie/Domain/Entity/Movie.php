@@ -3,17 +3,23 @@
 namespace Chaplin\Movie\Domain\Entity;
 
 use Chaplin\Core\Domain\ValueObject\Id;
+use Chaplin\User\Domain\Entity\UserMovie;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Movie
 {
+    private Collection $userMovies;
+
     public function __construct(
-        private Id $id,
-        private string $extId,
-        private string $title,
-        private DateTimeInterface $startDate,
-        private ?int $duration
-    ) {
+            private Id $id,
+            private string $extId,
+            private string $title,
+            private DateTimeInterface $year,
+            private ?int $duration
+        ) {
+        $this->userMovies = new ArrayCollection();
     }
 
     public function id(): Id
@@ -31,13 +37,23 @@ class Movie
         return $this->title;
     }
 
-    public function startDate(): DateTimeInterface
+    public function year(): DateTimeInterface
     {
-        return $this->startDate;
+        return $this->year;
     }
 
     public function duration(): ?int
     {
         return $this->duration;
+    }
+
+    public function userMovies(): array
+    {
+        return $this->userMovies->toArray();
+    }
+
+    public function addUserMovie(UserMovie $userMovie): void
+    {
+        $this->userMovies->add($userMovie);
     }
 }

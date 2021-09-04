@@ -14,11 +14,17 @@ Chaplin\Movie\Domain\Entity\Movie:
       column: title
       type: text
       nullable: false
-    startYear:
+    year:
       column: start_year
       type: datetime
       nullable: false
     duration:
       column: duration
-      type: int
+      type: integer
       nullable: true
+
+  oneToMany:
+    userMovies:
+      targetEntity: Chaplin\User\Domain\Entity\UserMovie
+      mappedBy: movie
+      cascade: [ "persist" ]

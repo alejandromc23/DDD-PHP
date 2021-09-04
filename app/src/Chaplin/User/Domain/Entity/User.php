@@ -3,6 +3,8 @@
 namespace Chaplin\User\Domain\Entity;
 
 use Chaplin\Core\Domain\ValueObject\Id;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
@@ -17,6 +19,8 @@ class User implements UserInterface
 
     private string $password;
 
+    private Collection $userMovies;
+
     public function __construct(
         Id $id,
         string $email,
@@ -26,6 +30,7 @@ class User implements UserInterface
         $this->email = $email;
         $this->username = $username;
         $this->roles = ['ROLE_USER'];
+        $this->userMovies = new ArrayCollection();
     }
 
     public function addRole($role)
@@ -120,5 +125,18 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return UserMovie[]
+     */
+    public function userMovies(): array
+    {
+        return $this->userMovies->toArray();
+    }
+
+    public function addUserMovie(UserMovie $userMovie): void
+    {
+        $this->userMovies->add($userMovie);
     }
 }

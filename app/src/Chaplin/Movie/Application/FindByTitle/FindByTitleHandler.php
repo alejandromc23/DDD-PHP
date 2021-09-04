@@ -3,6 +3,7 @@
 namespace Chaplin\Movie\Application\FindByTitle;
 
 use Chaplin\Core\CommandBus\QueryHandlerInterface;
+use Chaplin\Movie\Domain\Entity\Movie;
 use Chaplin\Movie\Domain\Repository\MovieRepository;
 
 class FindByTitleHandler implements QueryHandlerInterface
@@ -12,8 +13,22 @@ class FindByTitleHandler implements QueryHandlerInterface
     ) {
     }
 
-    public function handle(FindByTitleQuery $query): array
+    public function handle(FindByTitleQuery $query): FindByTitleResponse
     {
-        return $this->movieRepository->findByTitleLike($query->title());
+        $movies = $this->movieRepository->findByTitleLike($query->title());
+
+        return new FindByTitleResponse($this->formatMovies($movies));
+    }
+
+    public function formatMovies(array $movies): array
+    {
+        return array_map(function (Movie $movie) {
+            return new MovieResponse(
+                    $movie->id()->id(),
+                    $movie->title(),
+                    $movie->duration(),
+                    $movie->year()
+            );
+        }, $movies);
     }
 }
